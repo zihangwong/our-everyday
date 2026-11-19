@@ -1292,7 +1292,10 @@ async function uploadMediaBlob(client,m,blob){
   var ext={ 'image/jpeg':'jpg','image/png':'png','image/webp':'webp','image/gif':'gif','image/avif':'avif','video/mp4':'mp4','video/webm':'webm','video/quicktime':'mov'}[blob.type];
   if(!ext)throw Error('不支持这个媒体格式');
   var path=backend.space+'/'+m.id+'.'+ext;
-  if(blob.size<=6*1024*1024){var r=await client.storage.from('diary-media').upload(path,blob,{contentType:blob.type,upsert:true});if(r.error)throw r.error;return path;}
+  /* iPhone Safari sends a Blob read back from IndexedDB as an empty body ("No content provided").
+     Read the bytes into memory first and send those; a short read stops before anything is sent. */
+  async function bytesOf(part,expected){var bytes=await part.arrayBuffer();if(bytes.byteLength!==expected)throw Error('这台设备读出的文件不完整（'+bytes.byteLength+'/'+expected+' 字节）');return bytes;}
+  if(blob.size<=6*1024*1024){var r=await client.storage.from('diary-media').upload(path,await bytesOf(blob,blob.size),{contentType:blob.type,upsert:true});if(r.error)throw r.error;return path;}
   var endpoint=backend.url.replace('.supabase.co','.storage.supabase.co')+'/storage/v1/upload/resumable';
   var job=backend.uploads[m.id],offset=0,failures=0;
   async function headers(extra){var s=await client.auth.getSession();if(s.error||!s.data.session)throw Error('登录已失效，请重新登录后重试');return Object.assign({'Authorization':'Bearer '+s.data.session.access_token,'apikey':backend.key,'Tus-Resumable':'1.0.0'},extra);}
@@ -1301,7 +1304,7 @@ async function uploadMediaBlob(client,m,blob){
   if(!job){var created=await fetch(endpoint,{method:'POST',headers:await headers({'Upload-Length':String(blob.size),'Upload-Metadata':Object.entries({bucketName:'diary-media',objectName:path,contentType:blob.type,cacheControl:'3600'}).map(function(p){return p[0]+' '+tusMetadata(p[1]);}).join(','),'x-upsert':'true'})});
     if(!created.ok)throw Error('视频上传未建立（'+created.status+'）');var location=new URL(created.headers.get('Location')||'',endpoint);if(location.origin!==new URL(endpoint).origin||!created.headers.get('Location'))throw Error('上传地址不匹配');job={url:location.href};backend.uploads[m.id]=job;persistBackend();}
   while(offset<blob.size){
-    try{var chunk=blob.slice(offset,offset+6*1024*1024),response=await fetch(job.url,{method:'PATCH',headers:await headers({'Upload-Offset':String(offset),'Content-Type':'application/offset+octet-stream','x-upsert':'true'}),body:chunk});if(!response.ok)throw Error('上传中断（'+response.status+'）');var next=Number(response.headers.get('Upload-Offset'));if(!Number.isFinite(next)||next<=offset||next>blob.size)throw Error('上传进度无效');offset=next;failures=0;document.getElementById('cloudStatusLine').textContent='上传 '+m.name+'：'+Math.round(offset/blob.size*100)+'%';}
+    try{var chunk=blob.slice(offset,offset+6*1024*1024),response=await fetch(job.url,{method:'PATCH',headers:await headers({'Upload-Offset':String(offset),'Content-Type':'application/offset+octet-stream','x-upsert':'true'}),body:await bytesOf(chunk,chunk.size)});if(!response.ok)throw Error('上传中断（'+response.status+'）');var next=Number(response.headers.get('Upload-Offset'));if(!Number.isFinite(next)||next<=offset||next>blob.size)throw Error('上传进度无效');offset=next;failures=0;document.getElementById('cloudStatusLine').textContent='上传 '+m.name+'：'+Math.round(offset/blob.size*100)+'%';}
     catch(e){if(++failures>3)throw e;var check=await fetch(job.url,{method:'HEAD',headers:await headers()});if(!check.ok)throw e;offset=Number(check.headers.get('Upload-Offset'));if(!Number.isFinite(offset)||offset<0||offset>blob.size)throw Error('无法恢复上传进度');}
   }
   delete backend.uploads[m.id];persistBackend();return path;

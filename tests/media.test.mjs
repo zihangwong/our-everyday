@@ -107,14 +107,26 @@ test('resumable video upload retries from the confirmed server offset and sends 
     assert.ok(url.startsWith(endpoint));
     if(options.method==='POST')return new Response(null,{status:201,headers:{Location:endpoint+'/job'}});
     if(options.method==='HEAD')return new Response(null,{headers:{'Upload-Offset':String(offset)}});
-    patches.push({offset:Number(options.headers['Upload-Offset']),size:options.body.size});
+    assert.ok(options.body instanceof ArrayBuffer,'chunks are sent as bytes read into memory');
+    patches.push({offset:Number(options.headers['Upload-Offset']),size:options.body.byteLength});
     if(!failed){failed=true;return new Response(null,{status:503});}
-    assert.equal(Number(options.headers['Upload-Offset']),offset);offset+=options.body.size;return new Response(null,{status:204,headers:{'Upload-Offset':String(offset)}});
+    assert.equal(Number(options.headers['Upload-Offset']),offset);offset+=options.body.byteLength;return new Response(null,{status:204,headers:{'Upload-Offset':String(offset)}});
   }});
-  const client={auth:{getSession:async()=>({data:{session:{access_token:'test-token'}}})}},blob={type:'video/mp4',size:13*MiB,slice:(start,end)=>({size:Math.min(end,13*MiB)-start})};
+  const client={auth:{getSession:async()=>({data:{session:{access_token:'test-token'}}})}},blob={type:'video/mp4',size:13*MiB,slice:(start,end)=>{const size=Math.min(end,13*MiB)-start;return{size,arrayBuffer:async()=>new ArrayBuffer(size)};}};
   assert.equal(await h.uploadMediaBlob(client,{id:'asset',name:'clip.mp4'},blob),'s1/asset.mp4');assert.equal(offset,13*MiB);assert.ok(patches.every(p=>p.size<=6*MiB));assert.equal(h.backend.uploads.asset,undefined);
 });
 
+test('a stored photo is uploaded as bytes read into memory, never as the stored Blob (iPhone Safari sends that empty)',async()=>{
+  const MiB=1024*1024,stored=new Blob([new Uint8Array(4.1*MiB)],{type:'image/jpeg'});let sent;
+  const h=base(['tusMetadata','uploadMediaBlob']);
+  const client={storage:{from:bucket=>({upload:async(path,body,options)=>{sent={bucket,path,body,options};return{data:{path},error:null};}})}};
+  assert.equal(await h.uploadMediaBlob(client,{id:'photo'},stored),'s1/photo.jpg');
+  assert.ok(sent.body instanceof ArrayBuffer,'body must be raw bytes, not a Blob that becomes multipart');
+  assert.equal(sent.body.byteLength,stored.size);assert.equal(sent.options.contentType,'image/jpeg');assert.equal(sent.options.upsert,true);
+  let uploads=0;const short={type:'image/jpeg',size:4*MiB,arrayBuffer:async()=>new ArrayBuffer(0)};
+  client.storage.from=()=>({upload:async()=>{uploads++;return{error:null};}});
+  await assert.rejects(()=>h.uploadMediaBlob(client,{id:'photo'},short),/不完整/);assert.equal(uploads,0);
+});
 test('a tampered resumable location never receives the login token',async()=>{
   let calls=0;const h=base(['tusMetadata','uploadMediaBlob'],{fetch:async()=>{calls++;throw Error('must not send');}});h.backend.uploads.asset={url:'https://evil.test/steal'};
   const client={auth:{getSession:async()=>({data:{session:{access_token:'private-test-token'}}})}};

@@ -244,6 +244,27 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:190;op
 @keyframes hmBeat{0%,100%{transform:scale(1)}14%{transform:scale(1.08)}28%{transform:scale(1)}42%{transform:scale(1.05)}56%{transform:scale(1)}}
 @media(max-width:760px){.hero-scene .hm-stage{width:76px;height:72px}.heart-merge .hm-hint{font-size:21px;text-align:left;white-space:pre-line}}
 @media(prefers-reduced-motion:reduce){.heart-merge.is-today .hm-heart{animation:none}#hmFillRect{transition:none}}
+/* Collected hearts: one per finished month, a bigger one per year. */
+.heart-merge{position:relative}
+@media(min-width:761px){.hero-scene .heart-merge{width:240px;left:-40px}.heart-merge .hm-hint{white-space:pre;font-size:22px}}
+@media(min-width:761px) and (max-width:1180px){.hero-scene{display:flex;flex-direction:column;align-items:center;gap:18px;min-height:0}.hero-scene::before{display:none}.home-cover{position:relative;right:auto;top:auto;width:84%;max-width:340px}.hero-scene .heart-merge{position:relative;left:auto;bottom:auto;width:auto;flex-direction:row;flex-wrap:wrap;justify-content:center;gap:14px;align-items:center}.hero-scene .hm-stage{width:84px;height:80px}.heart-merge .hm-hint{text-align:left}.hm-past{flex-basis:100%}}
+.hm-stage,.hm-past-heart{border:0;background:none;padding:0;box-shadow:none!important;cursor:pointer}
+.hm-stage::before,.hm-past-heart::before{display:none!important}
+.hm-stage svg,.hm-past-heart svg{transition:transform .18s var(--ease);overflow:visible}
+.hm-stage:focus-visible,.hm-past-heart:focus-visible{outline:2px solid var(--btn);outline-offset:3px;border-radius:50%}
+.hm-past{display:flex;flex-wrap:wrap;justify-content:center;gap:0;max-width:300px}
+.hm-past[hidden]{display:none}
+.hm-past-heart{position:relative;width:44px;height:44px;display:grid;place-items:center;border-radius:50%}
+.hm-past-heart svg{width:26px;height:25px;fill:url(#hmGradL);filter:drop-shadow(0 3px 5px #6E2B3A33)}
+.hm-past-heart.is-year svg{width:38px;height:36px}
+.hm-past-heart span{position:absolute;inset:0;display:grid;place-items:center;padding-bottom:3px;font-size:12px;font-weight:700;color:#FFFDF8;pointer-events:none}
+@media(hover:hover){.hm-past-heart:hover::after{content:attr(data-label);position:absolute;bottom:calc(100% + 2px);left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--film);color:var(--film-ink);font-size:13px;line-height:1.4;padding:4px 10px;border-radius:999px;pointer-events:none;z-index:5}}
+.hm-past-heart:focus-visible::after{content:attr(data-label);position:absolute;bottom:calc(100% + 2px);left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--film);color:var(--film-ink);font-size:13px;line-height:1.4;padding:4px 10px;border-radius:999px;pointer-events:none;z-index:5}
+.hm-spark{position:absolute;width:14px;height:13px;pointer-events:none;z-index:6;animation:hmSpark .9s var(--ease) forwards}
+.hm-spark svg{width:100%;height:100%;fill:#B4627F;display:block}
+@keyframes hmSpark{from{transform:translate(-50%,-50%) scale(.5);opacity:1}to{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1);opacity:0}}
+@media(max-width:760px){.hero-scene .heart-merge{flex-wrap:wrap}.hm-past{flex-basis:100%;justify-content:flex-start;max-width:none;margin-top:-4px}.hm-past-heart svg{width:24px;height:23px}.hm-past-heart.is-year svg{width:34px;height:32px}}
+@media(prefers-reduced-motion:reduce){.hm-stage svg,.hm-past-heart svg{transition:none}}
 </style>
 </head>
 <body class="email-entry-locked">
@@ -287,7 +308,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:190;op
         <div class="home-actions"><button class="btn btn-primary" id="homeNewDate">写一页回忆</button><a class="text-link" href="#gallery">打开照片库 <span aria-hidden="true">↗</span></a></div>
         <div class="anniversary-keepsake" id="anniversaryKeepsake" aria-label="我们的在一起纪念日"><time class="anniversary-date" id="anniversaryDate" datetime=""></time><div class="anniversary-copy"><strong>在一起的纪念日</strong><span id="anniversaryFullDate"></span><p class="anniversary-count">在一起的第 <b id="dayNum">—</b> 天</p><button type="button" class="text-action" id="anniversaryOpen" aria-label="翻开在一起那天的回忆">翻开这一天</button></div></div>
       </div>
-      <div class="hero-scene"><figure class="home-cover" id="homePersonalCover" aria-label="我们的封面照片"></figure><div class="heart-merge" id="heartMerge"><div class="hm-stage" id="hmStage" role="img" aria-labelledby="hmHint"><svg class="hm-heart" viewBox="0 0 200 190" aria-hidden="true"><defs><linearGradient id="hmGradL" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#CD91A4"/><stop offset="1" stop-color="#8D3E5A"/></linearGradient><clipPath id="hmFillClip"><rect id="hmFillRect" x="0" y="172" width="200" height="190"/></clipPath></defs><path class="hm-outline" d="M100 172 C 60 128 12 96 12 52 C 12 22 38 8 62 8 C 82 8 96 22 100 40 C 104 22 118 8 138 8 C 162 8 188 22 188 52 C 188 96 140 128 100 172 Z"/><path class="hm-fill" d="M100 172 C 60 128 12 96 12 52 C 12 22 38 8 62 8 C 82 8 96 22 100 40 C 104 22 118 8 138 8 C 162 8 188 22 188 52 C 188 96 140 128 100 172 Z" fill="url(#hmGradL)" clip-path="url(#hmFillClip)"/></svg></div><p class="hm-hint" id="hmHint">在设置里写下在一起的日子</p></div></div>
+      <div class="hero-scene"><figure class="home-cover" id="homePersonalCover" aria-label="我们的封面照片"></figure><div class="heart-merge" id="heartMerge"><button type="button" class="hm-stage" id="hmStage" aria-label="这个月的爱心" aria-describedby="hmHint"><svg class="hm-heart" viewBox="0 0 200 190" aria-hidden="true"><defs><linearGradient id="hmGradL" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#CD91A4"/><stop offset="1" stop-color="#8D3E5A"/></linearGradient><clipPath id="hmFillClip"><rect id="hmFillRect" x="0" y="172" width="200" height="190"/></clipPath></defs><path class="hm-outline" d="M100 172 C 60 128 12 96 12 52 C 12 22 38 8 62 8 C 82 8 96 22 100 40 C 104 22 118 8 138 8 C 162 8 188 22 188 52 C 188 96 140 128 100 172 Z"/><path class="hm-fill" d="M100 172 C 60 128 12 96 12 52 C 12 22 38 8 62 8 C 82 8 96 22 100 40 C 104 22 118 8 138 8 C 162 8 188 22 188 52 C 188 96 140 128 100 172 Z" fill="url(#hmGradL)" clip-path="url(#hmFillClip)"/></svg></button><p class="hm-hint" id="hmHint">在设置里写下在一起的日子</p><div class="hm-past" id="hmPast" role="group" aria-label="已经走过的月份" hidden></div></div></div>
     </div>
     <div class="hero-footer">
 
@@ -1534,15 +1555,63 @@ function anniversaryProgress(iso,now){
   var left=days(today,nxt);
   return {months:j,next:j+1,daysLeft:left,progress:days(cur,today)/days(cur,nxt),today:false,text:'离在一起 '+anniversaryLabel(j+1)+'，还有 '+left+' 天'};
 }
+function anniversaryHearts(iso,now){
+  var current=anniversaryProgress(iso,now),done=current.today?current.months-1:current.months,past=[];
+  var p=String(iso||'').split('-').map(Number),y=p[0],mo=p[1],d=p[2];
+  if(!(y&&mo&&d)||done<1)return {past:past,current:current};
+  function at(k){var first=new Date(y,mo-1+k,1),last=new Date(first.getFullYear(),first.getMonth()+1,0).getDate();return new Date(first.getFullYear(),first.getMonth(),Math.min(d,last));}
+  function fmt(t){return t.getFullYear()+'.'+String(t.getMonth()+1).padStart(2,'0')+'.'+String(t.getDate()).padStart(2,'0');}
+  var years=Math.floor(done/12);
+  for(var i=1;i<=years;i++)past.push({kind:'year',n:i,short:i+'年',label:i+' 周年 · '+fmt(at(i*12))});
+  for(var k=years*12+1;k<=done;k++)past.push({kind:'month',n:k,short:'',label:'第 '+k+' 个月 · '+fmt(at(k))});
+  return {past:past,current:current};
+}
+var heartHintText='';
 function renderHeart(){
   var rect=document.getElementById('hmFillRect');if(!rect)return;
-  var p=anniversaryProgress(state.config.togetherDate,new Date());
+  var hs=anniversaryHearts(state.config.togetherDate,new Date()),p=hs.current;
   rect.setAttribute('y',String(172-p.progress*164));
-  document.getElementById('hmHint').textContent=p.text.replace('，','\n');
+  var past=document.getElementById('hmPast');past.hidden=!hs.past.length;
+  past.innerHTML=hs.past.map(function(h){return '<button type="button" class="hm-past-heart'+(h.kind==='year'?' is-year':'')+'" data-label="'+esc(h.label)+'" aria-label="'+esc(h.label)+'"><svg viewBox="0 0 200 190" aria-hidden="true"><path d="M100 172 C 60 128 12 96 12 52 C 12 22 38 8 62 8 C 82 8 96 22 100 40 C 104 22 118 8 138 8 C 162 8 188 22 188 52 C 188 96 140 128 100 172 Z"/></svg>'+(h.short?'<span aria-hidden="true">'+esc(h.short)+'</span>':'')+'</button>';}).join('');
+  heartHintText=p.text.replace('，','\n');
+  document.getElementById('hmHint').textContent=heartHintText;
   document.getElementById('heartMerge').classList.toggle('is-today',p.today);
+}
+function heartBurst(from){
+  if(motionReduced())return;
+  var root=document.getElementById('heartMerge'),a=root.getBoundingClientRect(),b=from.getBoundingClientRect();
+  for(var i=0;i<7;i++){
+    var spark=document.createElement('span'),angle=-Math.PI/2+(i-3)*0.42;
+    spark.className='hm-spark';spark.setAttribute('aria-hidden','true');
+    spark.style.left=(b.left-a.left+b.width/2)+'px';spark.style.top=(b.top-a.top+b.height/2)+'px';
+    spark.style.setProperty('--dx',Math.round(Math.cos(angle)*(38+i%3*10))+'px');spark.style.setProperty('--dy',Math.round(Math.sin(angle)*(38+i%2*12))+'px');
+    spark.innerHTML='<svg viewBox="0 0 200 190"><path d="M100 172 C 60 128 12 96 12 52 C 12 22 38 8 62 8 C 82 8 96 22 100 40 C 104 22 118 8 138 8 C 162 8 188 22 188 52 C 188 96 140 128 100 172 Z"/></svg>';
+    root.appendChild(spark);setTimeout(function(el){el.remove();}.bind(null,spark),950);
+  }
+}
+var heartHintTimer=null;
+function flashHeartHint(text){
+  var hint=document.getElementById('hmHint');hint.textContent=text;clearTimeout(heartHintTimer);
+  heartHintTimer=setTimeout(function(){hint.textContent=heartHintText;},2600);
 }
 function initHeart(){
   renderHeart();
+  var root=document.getElementById('heartMerge');
+  root.addEventListener('click',function(e){
+    var past=e.target.closest('.hm-past-heart');
+    if(past){heartBurst(past);flashHeartHint(past.dataset.label);return;}
+    var stage=e.target.closest('#hmStage');
+    if(stage){heartBurst(stage);var p=anniversaryProgress(state.config.togetherDate,new Date());flashHeartHint(p.today?heartHintText:'这个月的心，已经装了 '+Math.round(p.progress*100)+'%');}
+  });
+  /* Hearts near the pointer grow a little, like a dock. Touch and reduced motion skip this. */
+  root.addEventListener('pointermove',function(e){
+    if(e.pointerType!=='mouse'||motionReduced())return;
+    root.querySelectorAll('.hm-past-heart svg,#hmStage svg').forEach(function(svg){
+      var r=svg.getBoundingClientRect(),d=Math.hypot(e.clientX-(r.left+r.width/2),e.clientY-(r.top+r.height/2)),near=Math.max(0,1-d/120);
+      svg.style.transform='scale('+(1+near*(svg.closest('#hmStage')?0.06:0.45)).toFixed(3)+')';
+    });
+  });
+  root.addEventListener('pointerleave',function(){root.querySelectorAll('.hm-past-heart svg,#hmStage svg').forEach(function(svg){svg.style.transform='';});});
 }
 
 /* ===== 路由 ===== */

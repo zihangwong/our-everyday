@@ -1,0 +1,2 @@
+[functions.email-entry]
+verify_jwt = false

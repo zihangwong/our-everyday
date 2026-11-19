@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#FAF7F2">
-<meta name="description" content="两人份的日常，收藏属于我们的照片、视频与回忆，记住11月8日，在一起的那一天。">
+<meta name="theme-color" content="#F5EFE6">
+<meta name="description" content="两人份的日常，收藏属于我们的照片、视频与回忆。">
 <title>两人份的日常 · 我们的故事</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%20fill%3D%22none%22%20role%3D%22img%22%20aria-labelledby%3D%22title%22%3E%0A%20%20%3Ctitle%20id%3D%22title%22%3E%E4%B8%A4%E4%BA%BA%E4%BB%BD%E7%9A%84%E6%97%A5%E5%B8%B8%20%C2%B7%20%E7%9B%B8%E6%89%A3%E7%9A%84%E5%BF%83%3C%2Ftitle%3E%0A%20%20%3Cpath%20d%3D%22M24%2039C18%2034%207%2027%207%2017C7%209%2016%207%2021%2012C24%2015%2025%2018%2024%2022C22%2027%2017%2028%2015%2024%22%20stroke%3D%22%23682C40%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M24%2039C30%2034%2041%2027%2041%2017C41%209%2032%207%2027%2012C24%2015%2023%2018%2024%2022C26%2027%2031%2028%2033%2024%22%20stroke%3D%22%23AC768A%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E">
 <link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Long+Cang&display=swap">
 <style>
 /* 两人份的日常 · 私人回忆簿。One palette, one type scale, content first. */
 :root{--bg:#FAF7F2;--bg-soft:#F3ECE8;--card:#fff;--ink:#292326;--ink-soft:#71636A;--btn:#682C40;--btn-hover:#512032;--rose-deep:#682C40;--rose:#B98C99;--lilac:#A69099;--lilac-soft:#F0E6EB;--line:#EADCE1;--serif:'Noto Serif SC','Songti SC',SimSun,serif;--sans:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;--ease:cubic-bezier(.22,1,.36,1);--r-card:12px;--r-input:8px;--shadow:0 20px 70px rgba(45,24,31,.12)}
@@ -174,6 +175,64 @@ button:is(.text-action,.text-link,.cover-action,.home-cover-change,.space-expand
 button:is(.text-action,.text-link,.cover-action,.home-cover-change,.space-expand):focus-visible{outline:2px solid #A46F82;outline-offset:4px;border-radius:14px 9px 15px 10px}
 @media(prefers-reduced-motion:reduce){button:is(.text-action,.text-link,.cover-action,.home-cover-change,.space-expand){transition:none}}
 .letter-identity{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;min-height:44px;align-content:center;color:var(--ink-soft);font-size:13px}.letter-identity strong{font-family:var(--serif);font-size:18px;font-weight:500;color:var(--btn)}.letter-account-note{font-size:12px;line-height:1.8;color:var(--ink-soft);margin-top:12px}.letter-status{font-size:13px;line-height:1.8;color:var(--btn);margin-top:9px;min-height:24px;overflow-wrap:anywhere}.msg-form .row{gap:16px;flex-wrap:wrap}.msg-form .send{min-height:46px}@media(max-width:760px){.letter-identity{font-size:13px}.letter-identity strong{font-size:17px}.letter-account-note{font-size:12px}}
+/* v9 film album: warm paper, black film frames with sprocket holes, handwriting for feeling. */
+:root{--bg:#F5EFE6;--bg-soft:#EFE6DC;--paper:#FFFDF8;--ink:#2B2421;--ink-soft:#6B5D57;--line:#E2D6CB;--btn:#6E2B3A;--btn-hover:#4E1F2A;--rose-deep:#6E2B3A;--film:#1E1A18;--film-ink:#F5EFE6;--film-soft:#CBBFB5;--hand:'Long Cang','Ma Shan Zheng',var(--serif);--holes:repeating-linear-gradient(90deg,#F5EFE6d9 0 8px,transparent 8px 17px)}
+body{background:var(--bg);color:var(--ink)}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:190;opacity:.07;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E")}
+.nav{background:rgba(251,247,240,.96);border-bottom-color:var(--line)}
+.brand-mark{transform:none}
+/* One button family: solid pill and outline pill. */
+.btn{border-radius:999px}.btn-primary::after{display:none}.btn-primary{box-shadow:0 6px 14px #6E2B3A26}.btn-ghost{border-radius:999px}
+/* Feeling lines in handwriting. */
+.sec-head .sub,.chapter-head p,.memory .tag,.facts-note,.space-heading p{font-family:var(--hand);font-size:24px;line-height:1.35;color:var(--ink-soft);font-weight:400}
+.hero-couple{font-family:var(--hand);font-size:26px;color:var(--btn)}
+/* Black film frames. */
+.recent-image,.date-cover{border:solid var(--film);border-width:19px 9px;border-radius:3px;background:var(--holes) 0 6px/100% 7px no-repeat border-box,var(--holes) 0 calc(100% - 6px)/100% 7px no-repeat border-box,var(--film);box-shadow:0 10px 24px #2B242126}
+.recent-card:nth-child(2) .recent-image,.date-card:nth-child(2n) .date-cover{border-radius:3px}
+.home-cover{background:var(--holes) 10px 7px/calc(100% - 20px) 7px no-repeat,var(--holes) 10px calc(100% - 7px)/calc(100% - 20px) 7px no-repeat,var(--film);padding:21px 10px 25px;border-radius:3px;transform:rotate(-1.5deg);box-shadow:0 2px 4px #2B242133,0 18px 36px #2B242133;color:var(--film-ink)}
+.home-cover strong{font-family:var(--hand);font-size:24px;font-weight:400;color:var(--film-ink)}.home-cover time{color:var(--film-soft)}
+.gallery figure{background:var(--holes) 7px 6px/calc(100% - 14px) 6px no-repeat,var(--holes) 7px calc(100% - 6px)/calc(100% - 14px) 6px no-repeat,var(--film);padding:18px 7px;border:0;border-radius:3px;box-shadow:0 8px 20px #2B242126;color:var(--film-ink)}
+.gallery figure:nth-child(3n+1){border-radius:3px}.gallery figure img{border-radius:0}.gallery figure figcaption,.gallery figure figcaption *{color:var(--film-soft)}
+.space-print{background:var(--holes) 5px 4px/calc(100% - 10px) 5px no-repeat,var(--holes) 5px calc(100% - 4px)/calc(100% - 10px) 5px no-repeat,var(--film);padding:13px 5px;border-radius:2px;box-shadow:0 0 0 1px #F5EFE62e,0 12px 30px #0000004d;color:var(--film-ink)}
+.space-print figcaption strong{font-family:var(--hand);font-weight:400;font-size:1.25em;color:var(--film-ink)}.space-print figcaption span{color:var(--film-soft)}
+.space-viewport{background:#2A2320}.space-viewport::after{opacity:.1}.space-empty{color:var(--film-soft)}.space-status{color:var(--film-soft)}
+.orbit-card{background:var(--holes) 5px 4px/calc(100% - 10px) 5px no-repeat,var(--holes) 5px calc(100% - 4px)/calc(100% - 10px) 5px no-repeat,var(--film);padding:13px 5px;border:0;border-radius:2px}
+.orbit-anchor:nth-child(3n) .orbit-card{border-radius:2px}.orbit-photo{border-radius:0}.orbit-caption{color:var(--film-ink);font-family:var(--hand);font-size:15px}
+/* The mobile write button lives in the middle of the tab bar. */
+.tab-new{display:none}
+.filter-toggle{display:none}
+@media(max-width:760px){
+  .nav-link{font-size:12px}.brand-sub{font-size:12px;letter-spacing:.5px}.nav-btn{width:44px;height:44px}
+  #navNewDate,#homeNewDate,#btnNewDate,#galleryUpload{display:none}
+  .tab-new{display:grid;place-items:center;width:54px;height:54px;margin-top:-6px;border-radius:50%;background:var(--btn);color:#FFFDF8;box-shadow:0 6px 14px #6E2B3A47;flex-shrink:0}
+  .tab-new svg{width:24px;height:24px}
+  .hero-scene{min-height:0;display:flex;flex-direction:column;align-items:center;gap:18px;padding-bottom:8px}
+  .hero-scene::before{display:none}
+  .home-cover{position:relative;right:auto;top:auto;width:84%;max-width:320px;transform:rotate(-1.5deg)}
+  .hero-scene .heart-merge{position:relative;left:auto;bottom:auto;transform:none;width:auto;flex-direction:row;gap:12px;align-items:center}
+  .hero-scene .hm-stage{width:64px;height:60px}.hero-scene .hm-slider{width:120px}.hero-scene .hm-hint{font-size:13px;max-width:none}
+  .hm-hint span{font-family:var(--hand);font-size:20px}
+  .stats .lab,.stat .lab{font-size:13px}.hero-date-row{font-size:13px}.orbit-help,.space-heading small{font-size:13px}
+  .filter-toggle{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:999px;background:var(--paper);font-size:14px;margin-left:auto}
+  .collection-row{flex-direction:row;flex-wrap:wrap;align-items:center}
+  .collection-row .record-tools{display:none;width:100%}
+  .collection-row.filters-open .record-tools{display:grid}
+}
+@media(prefers-reduced-motion:reduce){.home-cover{transform:none}}
+/* v9 pass 2: holes show through a transparent border; readable sizes on phones. */
+.recent-image,.date-cover{border-color:transparent}
+#openHomeCover{border-radius:0}
+.space-print>button,.orbit-photo{background:#2A2320}#galleryBody figure figcaption,#galleryBody figure figcaption *{color:var(--film-soft)}.brand .brand-sub{font-size:12px}
+#view-home .hero-couple{font-size:26px}#view-home .hero-couple .couple-x{font-family:var(--serif);font-size:18px}
+@media(max-width:760px){
+  #view-home .hero-couple{font-size:24px;margin-bottom:12px}
+  #hmPct{display:none}.hero-scene .hm-hint{white-space:nowrap}
+  .hero-scene .hm-slider{height:44px}
+  .mem-date,.sample-flag,.mood,.date-card small,.letter-count,.letter-count span,.space-expand,.space-status span,.space-keyboard,.text-link,.text-link span,#view-messages small,#view-messages label{font-size:13px}
+  .fav-btn,[data-favorite]{min-width:44px;min-height:44px}
+  .sec-head .sub,.chapter-head p{font-size:22px}
+  .nav-links .nav-link,.brand .brand-sub{font-size:13px}#view-home .text-link,#view-home .text-link span,#view-home .mem-date,.date-cover small,.letter-account-note{font-size:13px}
+}
 </style>
 </head>
 <body class="email-entry-locked">
@@ -181,7 +240,7 @@ button:is(.text-action,.text-link,.cover-action,.home-cover-change,.space-expand
   <path d="M24 39C18 34 7 27 7 17C7 9 16 7 21 12C24 15 25 18 24 22C22 27 17 28 15 24" stroke="#682C40" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M24 39C30 34 41 27 41 17C41 9 32 7 27 12C24 15 23 18 24 22C26 27 31 28 33 24" stroke="#AC768A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
-</span><div><strong>两人份的日常</strong><small>11.08 · 在一起</small></div></div><h1 id="entryHeading">回到，我们的日常。</h1><p class="entry-lede">输入受邀邮箱，就能翻开属于我们的回忆。</p><form id="emailEntryForm" hidden><label for="entryEmail">邮箱</label><input id="entryEmail" type="email" inputmode="email" autocomplete="email" placeholder="你的邮箱" required maxlength="254"><button class="btn btn-primary" type="submit">进入我们的小天地</button><p class="entry-note">无需设置密码。登录过的设备，下次会自动进入。</p></form><p class="entry-status" id="emailEntryStatus" role="status" aria-live="polite">正在连接我们的日常…</p><details class="entry-owner"><summary>其他登录方式</summary><form id="emailOwnerForm"><label for="ownerEmail">账号邮箱</label><input id="ownerEmail" type="email" autocomplete="username" required><label for="ownerPassword">账号密码</label><input id="ownerPassword" type="password" autocomplete="current-password" required><button class="btn btn-ghost" type="submit">使用账号密码登录</button></form></details></div></div>
+</span><div><strong>两人份的日常</strong><small>我们的私人回忆簿</small></div></div><h1 id="entryHeading">回到，我们的日常。</h1><p class="entry-lede">输入受邀邮箱，就能翻开属于我们的回忆。</p><form id="emailEntryForm" hidden><label for="entryEmail">邮箱</label><input id="entryEmail" type="email" inputmode="email" autocomplete="email" placeholder="你的邮箱" required maxlength="254"><button class="btn btn-primary" type="submit">进入我们的小天地</button><p class="entry-note">无需设置密码。登录过的设备，下次会自动进入。</p></form><p class="entry-status" id="emailEntryStatus" role="status" aria-live="polite">正在连接我们的日常…</p><details class="entry-owner"><summary>其他登录方式</summary><form id="emailOwnerForm"><label for="ownerEmail">账号邮箱</label><input id="ownerEmail" type="email" autocomplete="username" required><label for="ownerPassword">账号密码</label><input id="ownerPassword" type="password" autocomplete="current-password" required><button class="btn btn-ghost" type="submit">使用账号密码登录</button></form></details></div></div>
 
 <a class="skip-link" href="#mainContent">跳到主要内容</a>
 <div class="blob-cursor" id="blobCursor" aria-hidden="true"></div>
@@ -192,12 +251,13 @@ button:is(.text-action,.text-link,.cover-action,.home-cover-change,.space-expand
     <a class="brand" href="#home" data-nav="home" aria-label="回到首页"><span class="brand-mark" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" aria-hidden="true">
   <path d="M24 39C18 34 7 27 7 17C7 9 16 7 21 12C24 15 25 18 24 22C22 27 17 28 15 24" stroke="#682C40" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M24 39C30 34 41 27 41 17C41 9 32 7 27 12C24 15 23 18 24 22C26 27 31 28 33 24" stroke="#AC768A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-</svg></span><span class="brand-copy"><span class="brand-title" id="brandTitle">两人份的日常</span><span class="brand-sub" id="brandSince">11.08 · 在一起</span></span></a>
+</svg></span><span class="brand-copy"><span class="brand-title" id="brandTitle">两人份的日常</span><span class="brand-sub" id="brandSince">我们的私人回忆簿</span></span></a>
     <div class="nav-links">
       <a class="nav-link" href="#home" data-nav="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="m3 10 9-7 9 7v11h-7v-7h-4v7H3Z"/></svg><span>首页</span></a>
       <a class="nav-link" href="#dates" data-nav="dates"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 6c-3-2-6-2-10-1v15c4-1 7-1 10 1 3-2 6-2 10-1V5c-4-1-7-1-10 1Zm0 0v15"/></svg><span>回忆</span></a>
+      <button type="button" class="tab-new" id="tabNewDate" aria-label="写一页回忆"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
       <a class="nav-link" href="#gallery" data-nav="gallery"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m3 17 5-4 4 3 4-6 5 7"/></svg><span>照片库</span></a>
-      <a class="nav-link" href="#messages" data-nav="messages"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg><span>我们</span></a>
+      <a class="nav-link" href="#messages" data-nav="messages"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span>书信</span></a>
     </div>
     <div class="nav-actions"><button class="nav-btn" id="openSettings" aria-label="打开设置" title="设置"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="m12 2 2 3 3 .5 3.5 3-1 3 1 3-3.5 3-3 .5-2 3-2-3-3-.5-3.5-3 1-3-1-3 3.5-3 3-.5Z"/></svg></button><button class="btn btn-primary btn-sm" id="navNewDate">写回忆</button></div>
   </div>
@@ -267,8 +327,8 @@ button:is(.text-action,.text-link,.cover-action,.home-cover-change,.space-expand
         </button>
       </div>
     </div>
-    <div class="collection-row"><div class="collection-tabs" role="group" aria-label="回忆收藏筛选"><button type="button" id="allMemories" aria-pressed="true">全部回忆</button><button type="button" id="favoriteMemories" aria-pressed="false">心动收藏</button></div>
-    <div class="record-tools" role="search" aria-label="查找约会记录">
+    <div class="collection-row"><div class="collection-tabs" role="group" aria-label="回忆收藏筛选"><button type="button" id="allMemories" aria-pressed="true">全部回忆</button><button type="button" id="favoriteMemories" aria-pressed="false">心动收藏</button></div><button type="button" class="filter-toggle" id="dateFilterToggle" aria-expanded="false" aria-controls="dateTools">筛选</button>
+    <div class="record-tools" id="dateTools" role="search" aria-label="查找约会记录">
       <div class="search-field"><label for="dateSearch">找一段回忆</label><input type="search" id="dateSearch" placeholder="搜索主题、地点或故事…" maxlength="120" autocomplete="off"></div>
       <div><label for="dateMood">心情</label><select id="dateMood"><option value="">所有心情</option><option>期待</option><option>心动</option><option>开心</option><option>甜</option><option>平静</option><option>舍不得</option></select></div>
       <div><label for="dateSort">排列</label><select id="dateSort"><option value="desc">最近的在前</option><option value="asc">从初次见面开始</option></select></div>
@@ -328,7 +388,7 @@ button:is(.text-action,.text-link,.cover-action,.home-cover-change,.space-expand
       </div>
       <div class="actions"><button type="button" class="btn btn-primary" id="galleryUpload">上传照片或视频</button></div>
     </div>
-    <div class="gallery-modebar"><div class="gallery-modes" role="group" aria-label="照片库展示方式"><button type="button" data-gallery-mode="orbit" aria-pressed="true" aria-controls="galleryOrbit">环形展览</button><button type="button" data-gallery-mode="scatter" aria-pressed="false" aria-controls="galleryScatter">空间漫游</button></div><a id="galleryAll" href="#galleryCount">完整浏览 ↓</a></div>
+    <div class="gallery-modebar"><div class="gallery-modes" role="group" aria-label="照片库展示方式"><button type="button" data-gallery-mode="scatter" aria-pressed="true" aria-controls="galleryScatter">3D 漫游</button><button type="button" data-gallery-mode="orbit" aria-pressed="false" aria-controls="galleryOrbit">环形展览</button></div><a id="galleryAll" href="#galleryCount">完整浏览 ↓</a></div>
     <div class="gallery-exhibition" id="galleryOrbit"><div class="hero-cover" id="heroCover"></div></div>
     <div id="galleryScatter" hidden>
       <div class="space-heading"><div><p>走进，我们的日常。</p><small id="spaceHelp"><span class="space-help-desktop">拖动看向四周 · 滚轮前进或后退</span><span class="space-help-mobile">左右拖动 · 点「前进」或「后退」探索</span> · 点照片，翻开那一天</small></div><button type="button" class="space-expand" id="spaceExpand" aria-expanded="false">展开漫游 ↗</button></div>
@@ -341,9 +401,9 @@ button:is(.text-action,.text-link,.cover-action,.home-cover-change,.space-expand
   </section>
 
   <!-- ===== 视图：悄悄话 ===== -->
-  <section id="view-messages" aria-label="我们">
+  <section id="view-messages" aria-label="书信">
     <div class="sec-head"><div><h2>写给彼此。</h2><p class="sub">有些话，适合留在纸上，慢慢读。</p></div></div>
-    <div class="our-summary"><div class="our-monogram"><span class="our-avatar" id="ourMyAvatar"></span><span class="our-avatar second" id="ourHerAvatar"></span><div class="our-names"><span id="ourNames"></span><small id="ourSince"></small></div></div><div class="our-controls"><button class="btn btn-ghost btn-sm" id="ourSettings">我们的设置</button><button class="btn btn-soft btn-sm" id="ourMusic">我们的音乐</button></div></div>
+    <div class="our-summary"><div class="our-monogram"><span class="our-avatar" id="ourMyAvatar"></span><span class="our-avatar second" id="ourHerAvatar"></span><div class="our-names"><span id="ourNames"></span><small id="ourSince"></small></div></div><div class="our-controls" hidden><button class="btn btn-ghost btn-sm" id="ourSettings">我们的设置</button><button class="btn btn-soft btn-sm" id="ourMusic">我们的音乐</button></div></div>
     <div class="letters-layout"><form class="msg-form" id="msgForm"><h3>今天，想对你说。</h3><label for="msgText">写给彼此的一封短信</label><textarea id="msgText" placeholder="今天想起了一个小瞬间…" maxlength="500"></textarea><p class="letter-count"><span id="letterCharCount">0</span> / 500</p><div class="row"><div class="letter-identity" aria-label="当前登录账号的署名"><span>署名</span><strong id="letterSender">登录后自动署名</strong><span id="letterRecipient"></span></div><button class="btn btn-primary send" id="letterSend" type="submit" disabled>留下这封信</button></div><p class="letter-account-note">署名跟随登录账号，写下属于自己的话。</p><p class="letter-status" id="letterStatus" role="status" aria-live="polite"></p></form><div class="msg-list" id="msgList"></div></div>
   </section>
 </main>
@@ -1465,6 +1525,7 @@ function initHeart(){
   var root=document.getElementById('heartMerge'),slider=document.getElementById('hmSlider');
   function update(value){var n=Math.max(0,Math.min(100,Number(value)||0));root.style.setProperty('--m',String(n/100));slider.value=String(n);root.classList.toggle('done',n===100);document.getElementById('hmPct').textContent=n+'%';document.getElementById('hmHint').textContent=n===100?'我们在一起了。':'把两颗心，慢慢靠近。';}
   slider.addEventListener('input',function(){update(slider.value);});document.getElementById('hmStage').addEventListener('click',function(){update(Number(slider.value)===100?0:100);});
+  update(100);
 }
 
 /* ===== 路由 ===== */
@@ -2439,6 +2500,8 @@ var recallPhotos = [];
 var recallPhotoIndex = 0;
 var photoTransition = null;
 document.getElementById('navNewDate').addEventListener('click',function(){openDateModal();});
+document.getElementById('tabNewDate').addEventListener('click',function(){openDateModal();});
+document.getElementById('dateFilterToggle').addEventListener('click',function(){var row=this.closest('.collection-row'),open=!row.classList.contains('filters-open');row.classList.toggle('filters-open',open);this.setAttribute('aria-expanded',String(open));if(open)document.getElementById('dateSearch').focus();});
 document.getElementById('allMemories').addEventListener('click',function(){favoritesOnly=false;renderDates();});
 document.getElementById('favoriteMemories').addEventListener('click',function(){favoritesOnly=true;renderDates();});
 document.getElementById('ourSettings').addEventListener('click',openSettings);

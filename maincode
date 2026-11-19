@@ -233,6 +233,17 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:190;op
   .sec-head .sub,.chapter-head p{font-size:22px}
   .nav-links .nav-link,.brand .brand-sub{font-size:13px}#view-home .text-link,#view-home .text-link span,#view-home .mem-date,.date-cover small,.letter-account-note{font-size:13px}
 }
+/* The countdown heart. */
+.hm-outline{fill:#FFFDF8;stroke:var(--btn);stroke-width:5;stroke-linejoin:round}
+#hmFillRect{transition:y .9s var(--ease)}
+.hm-heart{transform-origin:50% 55%}
+.hero-scene .heart-merge{transform:none}
+.heart-merge .hm-hint{font-family:var(--hand);font-size:24px;line-height:1.3;white-space:pre-line;color:var(--ink-soft);margin:0;text-align:center}
+.heart-merge.is-today .hm-hint{color:var(--btn)}
+.heart-merge.is-today .hm-heart{animation:hmBeat 1.8s ease-in-out infinite}
+@keyframes hmBeat{0%,100%{transform:scale(1)}14%{transform:scale(1.08)}28%{transform:scale(1)}42%{transform:scale(1.05)}56%{transform:scale(1)}}
+@media(max-width:760px){.hero-scene .hm-stage{width:76px;height:72px}.heart-merge .hm-hint{font-size:21px;text-align:left;white-space:pre-line}}
+@media(prefers-reduced-motion:reduce){.heart-merge.is-today .hm-heart{animation:none}#hmFillRect{transition:none}}
 </style>
 </head>
 <body class="email-entry-locked">
@@ -276,25 +287,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:190;op
         <div class="home-actions"><button class="btn btn-primary" id="homeNewDate">写一页回忆</button><a class="text-link" href="#gallery">打开照片库 <span aria-hidden="true">↗</span></a></div>
         <div class="anniversary-keepsake" id="anniversaryKeepsake" aria-label="我们的在一起纪念日"><time class="anniversary-date" id="anniversaryDate" datetime=""></time><div class="anniversary-copy"><strong>在一起的纪念日</strong><span id="anniversaryFullDate"></span><p class="anniversary-count">在一起的第 <b id="dayNum">—</b> 天</p><button type="button" class="text-action" id="anniversaryOpen" aria-label="翻开在一起那天的回忆">翻开这一天</button></div></div>
       </div>
-      <div class="hero-scene"><figure class="home-cover" id="homePersonalCover" aria-label="我们的封面照片"></figure><div class="heart-merge" id="heartMerge"><button type="button" class="hm-stage" id="hmStage" aria-label="把两颗心合在一起"><svg class="hm-heart" viewBox="0 0 200 190" aria-hidden="true">
-              <defs>
-                <mask id="hmMaskL">
-                  <path d="M0,0 L100,0 C85,45 115,78 100,106 C90,135 103,160 100,190 L0,190 Z" fill="#fff"/>
-                </mask>
-                <mask id="hmMaskR">
-                  <path d="M200,0 L100,0 C85,45 115,78 100,106 C90,135 103,160 100,190 L200,190 Z" fill="#fff"/>
-                </mask>
-                <linearGradient id="hmGradL" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="#CD91A4"/><stop offset="1" stop-color="#8D3E5A"/>
-                </linearGradient>
-                <linearGradient id="hmGradR" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="#EADCE1"/><stop offset="1" stop-color="#B58C9D"/>
-                </linearGradient>
-              </defs>
-              <g class="hm-half hl" mask="url(#hmMaskL)"><path class="hm-path hl" d="M100 172 C 60 128 12 96 12 52 C 12 22 38 8 62 8 C 82 8 96 22 100 40 C 104 22 118 8 138 8 C 162 8 188 22 188 52 C 188 96 140 128 100 172 Z" fill="url(#hmGradL)" stroke="rgba(190,90,115,.4)" stroke-width="2"/></g>
-              <g class="hm-half hr" mask="url(#hmMaskR)"><path class="hm-path hr" d="M100 172 C 60 128 12 96 12 52 C 12 22 38 8 62 8 C 82 8 96 22 100 40 C 104 22 118 8 138 8 C 162 8 188 22 188 52 C 188 96 140 128 100 172 Z" fill="url(#hmGradR)" stroke="rgba(165,127,201,.4)" stroke-width="2"/></g>
-              <path class="hm-whole" d="M100 172 C 60 128 12 96 12 52 C 12 22 38 8 62 8 C 82 8 96 22 100 40 C 104 22 118 8 138 8 C 162 8 188 22 188 52 C 188 96 140 128 100 172 Z" fill="url(#hmGradL)"/>
-            </svg></button><input type="range" class="hm-slider" id="hmSlider" min="0" max="100" value="0" aria-label="拖动进度条，把两颗心合在一起"><div class="hm-hint"><b id="hmPct">0%</b><span id="hmHint">把两颗心，慢慢靠近。</span></div></div></div>
+      <div class="hero-scene"><figure class="home-cover" id="homePersonalCover" aria-label="我们的封面照片"></figure><div class="heart-merge" id="heartMerge"><div class="hm-stage" id="hmStage" role="img" aria-labelledby="hmHint"><svg class="hm-heart" viewBox="0 0 200 190" aria-hidden="true"><defs><linearGradient id="hmGradL" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#CD91A4"/><stop offset="1" stop-color="#8D3E5A"/></linearGradient><clipPath id="hmFillClip"><rect id="hmFillRect" x="0" y="172" width="200" height="190"/></clipPath></defs><path class="hm-outline" d="M100 172 C 60 128 12 96 12 52 C 12 22 38 8 62 8 C 82 8 96 22 100 40 C 104 22 118 8 138 8 C 162 8 188 22 188 52 C 188 96 140 128 100 172 Z"/><path class="hm-fill" d="M100 172 C 60 128 12 96 12 52 C 12 22 38 8 62 8 C 82 8 96 22 100 40 C 104 22 118 8 138 8 C 162 8 188 22 188 52 C 188 96 140 128 100 172 Z" fill="url(#hmGradL)" clip-path="url(#hmFillClip)"/></svg></div><p class="hm-hint" id="hmHint">在设置里写下在一起的日子</p></div></div>
     </div>
     <div class="hero-footer">
 
@@ -1521,11 +1514,35 @@ async function bootBackend(){
 }
 
 
+/* The heart fills from one monthly anniversary to the next and is full on the day itself. */
+function anniversaryLabel(n){
+  var y=Math.floor(n/12),m=n%12;
+  if(!y)return n+' 个月';
+  return m?y+' 年 '+m+' 个月':y+' 周年';
+}
+function anniversaryProgress(iso,now){
+  var p=String(iso||'').split('-').map(Number),y=p[0],mo=p[1],d=p[2];
+  if(!y||!mo||!d)return {months:0,next:0,daysLeft:0,progress:0,today:false,text:'在设置里写下在一起的日子'};
+  var DAY=864e5,today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  function at(k){var first=new Date(y,mo-1+k,1),last=new Date(first.getFullYear(),first.getMonth()+1,0).getDate();return new Date(first.getFullYear(),first.getMonth(),Math.min(d,last));}
+  function days(a,b){return Math.round((b-a)/DAY);}
+  var start=at(0);
+  if(today<start){var wait=days(today,start);return {months:0,next:0,daysLeft:wait,progress:0,today:false,text:'离在一起，还有 '+wait+' 天'};}
+  var j=0;while(j<2400&&at(j+1)<=today)j++;
+  var cur=at(j),nxt=at(j+1);
+  if(days(cur,today)===0)return {months:j,next:j+1,daysLeft:0,progress:1,today:true,text:j?'今天，在一起 '+anniversaryLabel(j)+'了':'今天，我们在一起了'};
+  var left=days(today,nxt);
+  return {months:j,next:j+1,daysLeft:left,progress:days(cur,today)/days(cur,nxt),today:false,text:'离在一起 '+anniversaryLabel(j+1)+'，还有 '+left+' 天'};
+}
+function renderHeart(){
+  var rect=document.getElementById('hmFillRect');if(!rect)return;
+  var p=anniversaryProgress(state.config.togetherDate,new Date());
+  rect.setAttribute('y',String(172-p.progress*164));
+  document.getElementById('hmHint').textContent=p.text.replace('，','\n');
+  document.getElementById('heartMerge').classList.toggle('is-today',p.today);
+}
 function initHeart(){
-  var root=document.getElementById('heartMerge'),slider=document.getElementById('hmSlider');
-  function update(value){var n=Math.max(0,Math.min(100,Number(value)||0));root.style.setProperty('--m',String(n/100));slider.value=String(n);root.classList.toggle('done',n===100);document.getElementById('hmPct').textContent=n+'%';document.getElementById('hmHint').textContent=n===100?'我们在一起了。':'把两颗心，慢慢靠近。';}
-  slider.addEventListener('input',function(){update(slider.value);});document.getElementById('hmStage').addEventListener('click',function(){update(Number(slider.value)===100?0:100);});
-  update(100);
+  renderHeart();
 }
 
 /* ===== 路由 ===== */
@@ -1720,7 +1737,7 @@ function renderHome(){
   document.getElementById('ourSince').textContent=n>0?'相识于 '+c.meetDate+'；从 '+c.togetherDate+' 开始，在一起第 '+n+' 天。':'把相遇的那一天，写进我们的故事。';
   updateLetterComposer();
   document.querySelector('.fab-wrap').classList.toggle('has-track',!!spotifyEmbedUrl(c.spotifyUrl));
-  renderHomeCover();renderRecent(); renderMemory();
+  renderHomeCover();renderRecent(); renderMemory();renderHeart();
 }
 function renderUpcoming(){
   var box = document.getElementById("upcomingDate");
